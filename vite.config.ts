@@ -16,16 +16,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: [
-            'react',
-            'react-dom',
-            'react-router',
-            'react-i18next',
-            'i18next',
-            'react-redux',
-            '@reduxjs/toolkit',
-            'lucide-react',
-          ],
+          vendor: ['react', 'react-dom', 'react-router', 'lucide-react'],
           ui: [
             '@radix-ui/react-accordion',
             '@radix-ui/react-alert-dialog',

@@ -11,7 +11,10 @@ import {
 import { useApp } from '../contexts/app-context';
 import { languages } from '../lib/i18n';
 import { cn } from '../lib/utils';
-import { useNavigationShortcuts, useKeyboardShortcuts } from '../hooks/use-keyboard-shortcuts';
+import {
+  useNavigationShortcuts,
+  useKeyboardShortcuts,
+} from '../hooks/use-keyboard-shortcuts';
 
 export function Navbar() {
   const location = useLocation();
@@ -25,7 +28,7 @@ export function Navbar() {
       description: 'Toggle Theme',
     },
   ]);
-  
+
   useNavigationShortcuts();
 
   return (

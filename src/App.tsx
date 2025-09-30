@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './contexts/app-context';
 import { Navbar } from './components/navbar';
 import { MobileNav } from './components/mobile-nav';
-import { Toaster } from './components/ui/sonner';
 import { KeyboardShortcutsHelp } from './components/keyboard-shortcuts-help';
 import HomePage from './pages/home';
 import UsersPage from './pages/users';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           </main>
           <MobileNav />
           <KeyboardShortcutsHelp />
-          <Toaster />
+          <Toaster position='top-center' reverseOrder={false} />{' '}
         </div>
       </BrowserRouter>
     </AppProvider>

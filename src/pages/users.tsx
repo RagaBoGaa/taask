@@ -14,8 +14,8 @@ import { useApp } from '../contexts/app-context';
 import { UserDialog } from '../components/user-dialog';
 import { DeleteDialog } from '../components/delete-dialog';
 import type { User } from '../types/user';
-import { useToast } from '../hooks/use-toast';
 import { useKeyboardShortcuts } from '../hooks/use-keyboard-shortcuts';
+import toast from 'react-hot-toast';
 
 const initialUsers: User[] = [
   { id: '1', name: 'Alice Johnson', email: 'alice@example.com' },
@@ -26,7 +26,6 @@ const initialUsers: User[] = [
 
 export default function UsersPage() {
   const { t } = useApp();
-  const { toast } = useToast();
   const [users, setUsers] = useState<User[]>(initialUsers);
   const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set());
   const [userDialogOpen, setUserDialogOpen] = useState(false);
@@ -67,10 +66,7 @@ export default function UsersPage() {
       setUsers(
         users.map((u) => (u.id === userData.id ? { ...u, ...userData } : u))
       );
-      toast({
-        title: 'User updated',
-        description: 'The user has been successfully updated.',
-      });
+      toast.success('The user has been successfully updated.');
     } else {
       const newUser: User = {
         id: Date.now().toString(),
@@ -78,10 +74,7 @@ export default function UsersPage() {
         email: userData.email,
       };
       setUsers([...users, newUser]);
-      toast({
-        title: 'User added',
-        description: 'The user has been successfully added.',
-      });
+      toast.success('The user has been successfully added.');
     }
   };
 
@@ -99,17 +92,13 @@ export default function UsersPage() {
   const confirmDelete = () => {
     if (deletingUserId) {
       setUsers(users.filter((u) => u.id !== deletingUserId));
-      toast({
-        title: 'User deleted',
-        description: 'The user has been successfully deleted.',
-      });
+      toast.success('The user has been successfully deleted.');
     } else {
       setUsers(users.filter((u) => !selectedUsers.has(u.id)));
       setSelectedUsers(new Set());
-      toast({
-        title: 'Users deleted',
-        description: `${selectedUsers.size} users have been successfully deleted.`,
-      });
+      toast.success(
+        `${selectedUsers.size} users have been successfully deleted.`
+      );
     }
     setDeleteDialogOpen(false);
     setDeletingUserId(null);
